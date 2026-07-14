@@ -118,6 +118,7 @@ foreach ($posts as $index => $post_item) {
     <title>Kelola Postingan Kegiatan - Korti <?= htmlspecialchars($site_name) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/tailwind.css" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <style>
         /* Carousel styles for korti posts */
         .carousel-container {

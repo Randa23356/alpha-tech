@@ -42,6 +42,7 @@ $comments = $stmt->fetchAll();
     <title>Kelola Komentar Kegiatan - Admin Informatics A</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?= url('public/tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <script>
         // Delete Modal Functions - Define early so they're available for HTML elements
         let deleteModal = null;

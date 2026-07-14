@@ -82,6 +82,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galeri - <?= htmlspecialchars($site_name) ?></title>
     <link href="<?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <link href="<?= asset('css/dynamic-theme.php') ?>" rel="stylesheet">
     <style>
         /* Dynamic theme variables for gallery page */

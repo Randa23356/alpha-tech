@@ -34,7 +34,7 @@ if (!$is_api_request && session_status() === PHP_SESSION_NONE) {
 if (!defined('BASE_URL')) {
     define('BASE_URL', $is_local 
         ? 'http://localhost/informatics_a'  // Local development
-        : 'https://alpha-tech-informatics.kesug.com'  // Production
+        : 'https://alpha-tech.ftwodev.id'  // Production
     );
 }
 

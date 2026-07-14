@@ -70,6 +70,7 @@ $contact_instagram = $settings['contact_instagram'] ?? '@informaticsa';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informatics A - Kegiatan Kelas</title>
     <link href="<?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <style>
         /* Carousel styles for public index */
         .carousel-container {

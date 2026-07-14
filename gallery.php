@@ -81,6 +81,7 @@ try {
     <title>Galeri Foto Kegiatan - Informatics <?= htmlspecialchars($site_name) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href=" <?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
     <link href=" <?= url('public/css/dynamic-theme.php') ?>" rel="stylesheet">
     <style>
         /* Fallback styles using PHP variables for better compatibility */

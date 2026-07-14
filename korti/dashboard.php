@@ -99,6 +99,7 @@ try {
     <title>Dashboard Korti - <?= htmlspecialchars($site_name) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?= url("public/tailwind.css") ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
 </head>
 <body class="min-h-screen" style="background: linear-gradient(135deg, <?= $primary_color ?>10 0%, <?= $secondary_color ?>10 100%);">
 <?php include __DIR__ . "/../includes/navbar.php"; ?>

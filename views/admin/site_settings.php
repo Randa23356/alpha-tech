@@ -119,6 +119,7 @@ $hero_gradient_end = $current_settings['hero_gradient_end'] ?? '#ec4899';
     <title>Pengaturan Website & Tema - Admin Informatics A</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/tailwind.css" rel="stylesheet">
+    <?php require_once __DIR__ . '/../../includes/favicon.php'; ?>
     <style>
         .color-preview {
             transition: all 0.3s ease;

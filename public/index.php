@@ -194,6 +194,7 @@ $hero_show_arrows_desktop = $current_slider_settings['hero_show_arrows_desktop']
     <title><?php echo htmlspecialchars($site_title); ?> - Platform Kolaborasi Informatika</title>
     <link href="<?= asset('tailwind.css') ?>" rel="stylesheet">
     <link href="<?= asset('css/dynamic-theme.php') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <style>
         /* Card Animations */
         @keyframes fadeInUp {

@@ -163,6 +163,7 @@ $announcements = $stmt->fetchAll();
     <title>Kelola Pengumuman Kelas - Korti <?= htmlspecialchars($site_name) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?= url('public/tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <script>
         // Delete Modal Functions - Define early so they're available for HTML elements
         let deleteModal = null;

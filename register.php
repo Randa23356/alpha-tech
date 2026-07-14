@@ -101,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - <?= htmlspecialchars($site_name) ?></title>
     <link href="<?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4" style="background: linear-gradient(135deg, <?= $primary_color ?> 0%, <?= $secondary_color ?> 100%);">
     <div class="w-full max-w-md">

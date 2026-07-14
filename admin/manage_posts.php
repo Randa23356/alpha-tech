@@ -97,6 +97,7 @@ foreach ($posts as $index => $post_item) {
     <title>Kelola Postingan Kegiatan - Admin Informatics A</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <style>
         /* Carousel styles for admin manage posts */
         .carousel-container {

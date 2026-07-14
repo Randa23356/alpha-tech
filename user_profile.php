@@ -166,6 +166,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($userProfile['username']) ?> - Profile - Informatics A</title>
     <link href="<?= url('public/tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
     <style>
         /* Page transition animations */
         .page-transition-enter {

@@ -160,6 +160,7 @@ $gallery = array_slice($gallery_items, 0, 50);
     <title>Kelola Galeri Foto - Admin Informatics A</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <style>
         /* Enhanced card styles for admin manage gallery */
         .line-clamp-2 {

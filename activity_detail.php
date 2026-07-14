@@ -114,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_comment']) && isL
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($activity['title']) ?> - <?= htmlspecialchars($site_name) ?></title>
     <link href="<?= url('public/tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/includes/favicon.php'; ?>
     <style>
         /* Carousel styles for activity detail - Fixed version */
         .carousel-container {

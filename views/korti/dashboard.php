@@ -35,6 +35,7 @@ try {
     <title>Dashboard Korti - Informatics A</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/informatics_a/public/tailwind.css" rel="stylesheet">
+    <?php require_once __DIR__ . '/../../includes/favicon.php'; ?>
 </head>
 <body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
     <?php include __DIR__ . '/../../includes/navbar.php'; ?>

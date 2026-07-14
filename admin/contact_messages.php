@@ -47,6 +47,7 @@ if (isset($_GET['view']) && $_GET['view'] === 'detail' && isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesan Kontak - Admin Panel</title>
     <link href=" <?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
 </head>
 <body class="bg-gray-100 min-h-screen">
     <?php include __DIR__ . '/../includes/navbar.php'; ?>

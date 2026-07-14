@@ -47,6 +47,7 @@ $gallery = $stmt->fetchAll();
     <title>Detail Profil User - Admin Informatics A</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/tailwind.css" rel="stylesheet">
+    <?php require_once __DIR__ . '/../../includes/favicon.php'; ?>
 </head>
 <body class="bg-blue-900 min-h-screen">
     <nav class="bg-blue-800 text-white px-6 py-4 flex justify-between items-center">

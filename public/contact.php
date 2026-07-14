@@ -49,6 +49,7 @@ $contact_address = $settings['contact_address'] ?? 'Jl. Pendidikan No. 123, Jaka
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak - <?= htmlspecialchars($site_name) ?></title>
     <link href="<?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <style>
         /* Dynamic theme variables for contact page */
         :root {

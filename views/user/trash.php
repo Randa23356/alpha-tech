@@ -324,6 +324,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isLoggedIn()) {
     <title>Trash - Dashboard User - Informatics A</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?= url('public/tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../../includes/favicon.php'; ?>
     <style>
         /* Responsive Design Improvements */
         @media (max-width: 768px) {

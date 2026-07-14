@@ -39,6 +39,7 @@ $announcements = $stmt->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengumuman - Informatics A</title>
     <link href="<?= asset('tailwind.css') ?>" rel="stylesheet">
+    <?php require_once __DIR__ . '/../includes/favicon.php'; ?>
     <style>
         /* Dynamic theme variables for announcement page */
         :root {

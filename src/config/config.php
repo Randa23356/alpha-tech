@@ -47,10 +47,10 @@ if ($is_local) {
     $db_pass = '';
 } else {
     // ✅ InfinityFree Hosting
-    $db_host = 'sql111.infinityfree.com';        // Cek di cPanel → MySQL Databases
-    $db_name = 'if0_40177206_alpha_tech';        // Format: if0_XXXXX_namadb
-    $db_user = 'if0_40177206';                   // Username InfinityFree kamu
-    $db_pass = 'WgImWk8kPP';                    // Password yang kamu set di cPanel
+    $db_host = 'localhost';        // Cek di cPanel → MySQL Databases
+    $db_name = 'u559621041_alpha';        // Format: if0_XXXXX_namadb
+    $db_user = 'u559621041_alpha_tech';                   // Username InfinityFree kamu
+    $db_pass = 'Selfi1823';                    // Password yang kamu set di cPanel
 }
 
 // Debug log
@@ -64,6 +64,6 @@ if (!defined('SITE_NAME')) define('SITE_NAME', 'Informatics A');
 if (!defined('UPLOAD_PATH')) define('UPLOAD_PATH', __DIR__ . '/../../public/uploads/');
 if (!defined('GOOGLE_CLIENT_ID')) define('GOOGLE_CLIENT_ID', '729994754873-m7qbjk8jafgqvrvpmpspjnqpqaeuirj1.apps.googleusercontent.com');
 if (!defined('GOOGLE_CLIENT_SECRET')) define('GOOGLE_CLIENT_SECRET', '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');
-if (!defined('GOOGLE_REDIRECT_URI')) define('GOOGLE_REDIRECT_URI', 'https://alpha-tech-informatics.kesug.com/google-callback.php');
+if (!defined('GOOGLE_REDIRECT_URI')) define('GOOGLE_REDIRECT_URI', 'https://alpha-tech.ftwodev.id/google-callback.php');
 if (!defined('GOOGLE_SCOPES')) define('GOOGLE_SCOPES', ['email', 'profile']);
 ?>

@@ -10,7 +10,7 @@ class GoogleAuth {
         $this->client = new Google_Client();
         $this->client->setClientId('729994754873-m7qbjk8jafgqvrvpmpspjnqpqaeuirj1.apps.googleusercontent.com');
         $this->client->setClientSecret('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');
-        $this->client->setRedirectUri(BASE_URL . '/google-callback');
+        $this->client->setRedirectUri(GOOGLE_REDIRECT_URI);
         $this->client->addScope('email');
         $this->client->addScope('profile');
     }

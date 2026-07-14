@@ -1,0 +1,15 @@
+{
+    "name": "informatics/a",
+    "description": "Informatics A Project",
+    "authors": [
+        {
+            "name": "Developer",
+            "email": "dev@example.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.10",
+        "firebase/php-jwt": "^6.11",
+        "google/apiclient": "^2.18"
+    }
+}

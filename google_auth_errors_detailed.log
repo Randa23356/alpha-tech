@@ -1,0 +1,70 @@
+[2025-10-18 04:47:39] {
+    "timestamp": "2025-10-18 04:47:39",
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'",
+    "file": "/home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php",
+    "line": 141,
+    "trace": "#0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(141): PDO->prepare('INSERT INTO use...')\n#1 {main}",
+    "session_status": 2,
+    "session_id": "ae4a6f7373b1d3b4da58239dab4996ca",
+    "session_data": [],
+    "server": {
+        "request_uri": "/google-callback.php?code=4%2F0AVGzR1AUx0Sll0j1Kbxr8wdewJQY8v1n1jEcCMYH4cfg1ByACDC9aBL_NnXv7GWMKLXc0A&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent",
+        "http_referer": "https://accounts.google.com/",
+        "remote_addr": "112.215.221.138"
+    }
+}
+
+[2025-10-18 04:47:44] {
+    "timestamp": "2025-10-18 04:47:44",
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'",
+    "file": "/home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php",
+    "line": 141,
+    "trace": "#0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(141): PDO->prepare('INSERT INTO use...')\n#1 {main}",
+    "session_status": 2,
+    "session_id": "ae4a6f7373b1d3b4da58239dab4996ca",
+    "session_data": {
+        "error": "Terjadi kesalahan saat proses login. Silakan coba lagi."
+    },
+    "server": {
+        "request_uri": "/google-callback.php?code=4%2F0AVGzR1A2zhvvQMzSyahbvWQj_NLVc-B1K34zaWAvpO1TgymQN27Lz8C-vyHXqdYau1yJOw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none",
+        "http_referer": "https://alpha-tech-informatics.kesug.com/",
+        "remote_addr": "112.215.221.138"
+    }
+}
+
+[2025-10-18 04:47:48] {
+    "timestamp": "2025-10-18 04:47:48",
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'",
+    "file": "/home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php",
+    "line": 141,
+    "trace": "#0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(141): PDO->prepare('INSERT INTO use...')\n#1 {main}",
+    "session_status": 2,
+    "session_id": "ae4a6f7373b1d3b4da58239dab4996ca",
+    "session_data": {
+        "error": "Terjadi kesalahan saat proses login. Silakan coba lagi."
+    },
+    "server": {
+        "request_uri": "/google-callback.php?code=4%2F0AVGzR1B3emg67_swCRYZcpXfQ4XJKu3781ctgNTabovDd6v_HAc-JwxTB9rb8hZBm_lqzQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none",
+        "http_referer": "https://alpha-tech-informatics.kesug.com/",
+        "remote_addr": "112.215.221.138"
+    }
+}
+
+[2025-10-18 04:47:51] {
+    "timestamp": "2025-10-18 04:47:51",
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'",
+    "file": "/home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php",
+    "line": 141,
+    "trace": "#0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(141): PDO->prepare('INSERT INTO use...')\n#1 {main}",
+    "session_status": 2,
+    "session_id": "ae4a6f7373b1d3b4da58239dab4996ca",
+    "session_data": {
+        "error": "Terjadi kesalahan saat proses login. Silakan coba lagi."
+    },
+    "server": {
+        "request_uri": "/google-callback.php?code=4%2F0AVGzR1C8l4UhfkLdNGwxqOKH08bPE6ZiImzJ2bNUqagJzT8NiZz5XEZoOmEWQiKoPgbOew&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=0&prompt=none",
+        "http_referer": "https://alpha-tech-informatics.kesug.com/",
+        "remote_addr": "112.215.221.138"
+    }
+}
+

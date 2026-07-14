@@ -1,0 +1,7 @@
+-- informatics_a/public/uploads/kegiatan_1_1.jpg
+-- informatics_a/public/uploads/kegiatan_1_2.jpg
+-- informatics_a/public/uploads/kegiatan_1_3.jpg
+-- informatics_a/public/uploads/kegiatan_2_1.jpg
+-- informatics_a/public/uploads/kegiatan_2_2.jpg
+-- informatics_a/public/uploads/kegiatan_3_1.jpg
+-- informatics_a/public/uploads/kegiatan_3_2.jpg

@@ -1,0 +1,269 @@
+[18-Oct-2025 04:47:39 America/New_York] === New Google Auth Request ===
+[18-Oct-2025 04:47:39 America/New_York] Session ID: ae4a6f7373b1d3b4da58239dab4996ca
+[18-Oct-2025 04:47:39 America/New_York] GET Data: Array
+(
+    [code] => 4/0AVGzR1AUx0Sll0j1Kbxr8wdewJQY8v1n1jEcCMYH4cfg1ByACDC9aBL_NnXv7GWMKLXc0A
+    [scope] => email profile https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid
+    [authuser] => 0
+    [prompt] => consent
+)
+
+[18-Oct-2025 04:47:39 America/New_York] Session Data Before Auth: Array
+(
+)
+
+[18-Oct-2025 04:47:39 America/New_York] Auth Code: 4/0AVGzR1AUx0Sll0j1Kbxr8wdewJQY8v1n1jEcCMYH4cfg1ByACDC9aBL_NnXv7GWMKLXc0A
+[18-Oct-2025 04:47:39 America/New_York] Token Response: Array
+(
+    [access_token] => ya29.a0AQQ_BDSb5d5UPrzKI5hbfpwiKqZ2NjzivJIsYQXUkFbXKugzGPY1zeT59xiM485uL7eTjJaswZzH7oIMyc-Pd7lO3y7fBbW4N7P3fMZgENC90Lgx5IQn7eblrwIQEHPKxtrprBtDcP5jyFlwElYPU5oc4Ugs5Soyas8gwqaDuGu_5DckGG-pWDygKtfsKwJSHNSkFC4aCgYKAUYSARcSFQHGX2Mi-y27nx8eJ1ezmpAcrG3syQ0206
+    [expires_in] => 3599
+    [scope] => https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid
+    [token_type] => Bearer
+    [id_token] => eyJhbGciOiJSUzI1NiIsImtpZCI6ImZiOWY5MzcxZDU3NTVmM2UzODNhNDBhYjNhMTcyY2Q4YmFjYTUxN2YiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxMjIxMzc0NzkzNDkwNTY5MjkiLCJlbWFpbCI6InJhbmRhYW5nZ2k5MkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IjJjbXdkQlg1ZVZQNVJXT0NNN1I2N0EiLCJuYW1lIjoiQXJtYW4gQmVib3RvaCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMYjU1NDNOdTJUVFZYNG50Nll3RkEzZnRSVlhzZG5nMjJCSFdLVDBKV1d2RnVTa3c9czk2LWMiLCJnaXZlbl9uYW1lIjoiQXJtYW4iLCJmYW1pbHlfbmFtZSI6IkJlYm90b2giLCJpYXQiOjE3NjA3NzcyNTksImV4cCI6MTc2MDc4MDg1OX0.i_FSDRbxNOhKrA_fB4mtvChtaxcn7DuCpaJnHRQpn0KUAfSVoQNj6YHKWW7SWxT0yyyPeihP36l7TOL4_-HrhrNVdjELsGt1esxktG9Vi2HFPH4ikJzPiglYj1G31g1oo3kmWNZpYqTwuL6Um58JtRP2VewUnG-HGzAbhizJninzCg1kIGfvyUaQrveIPCI3YaMF6BPOMmtDrmSXKrcyz7-qQgew2Gv2ztprIdHtad25e093TEin3Pwc396Xqeh0_7aXvbA2IRFpt4crTUcQdID42LZ9IPwD-XVfyE-Wcn68HsSKQo9E0tvMJusoEauuxWOSQP1t9FC2ixrDvJs_pQ
+    [created] => 1760777259
+)
+
+[18-Oct-2025 04:47:39 America/New_York] Fetching user info from Google...
+[18-Oct-2025 04:47:39 America/New_York] Successfully retrieved user info from Google
+[18-Oct-2025 04:47:39 America/New_York] Google User Data: Array
+(
+    [email] => randaanggi92@gmail.com
+    [name] => Arman Bebotoh
+    [google_id] => 102122137479349056929
+    [picture] => https://lh3.googleusercontent.com/a/ACg8ocLb5543Nu2TTVX4nt6YwFA3ftRVXsdng22BHWKT0JWWvFuSkw=s96-c
+)
+
+[18-Oct-2025 04:47:39 America/New_York] Checking if user exists in database...
+[18-Oct-2025 04:47:39 America/New_York] User database check result: User not found
+[18-Oct-2025 04:47:39 America/New_York] {
+    "timestamp": "2025-10-18 04:47:39",
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'",
+    "file": "/home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php",
+    "line": 141,
+    "trace": "#0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(141): PDO->prepare('INSERT INTO use...')\n#1 {main}",
+    "session_status": 2,
+    "session_id": "ae4a6f7373b1d3b4da58239dab4996ca",
+    "session_data": [],
+    "server": {
+        "request_uri": "/google-callback.php?code=4%2F0AVGzR1AUx0Sll0j1Kbxr8wdewJQY8v1n1jEcCMYH4cfg1ByACDC9aBL_NnXv7GWMKLXc0A&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent",
+        "http_referer": "https://accounts.google.com/",
+        "remote_addr": "112.215.221.138"
+    }
+}
+[18-Oct-2025 04:47:39 America/New_York] Final state before error redirect: Array
+(
+    [session_status] => 2
+    [session_id] => ae4a6f7373b1d3b4da58239dab4996ca
+    [session_data] => Array
+        (
+            [error] => Terjadi kesalahan saat proses login. Silakan coba lagi.
+        )
+
+    [headers_sent] => 
+    [error_get_last] => 
+)
+
+[18-Oct-2025 04:47:44 America/New_York] === New Google Auth Request ===
+[18-Oct-2025 04:47:44 America/New_York] Session ID: ae4a6f7373b1d3b4da58239dab4996ca
+[18-Oct-2025 04:47:44 America/New_York] GET Data: Array
+(
+    [code] => 4/0AVGzR1A2zhvvQMzSyahbvWQj_NLVc-B1K34zaWAvpO1TgymQN27Lz8C-vyHXqdYau1yJOw
+    [scope] => email profile https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email
+    [authuser] => 0
+    [prompt] => none
+)
+
+[18-Oct-2025 04:47:44 America/New_York] Session Data Before Auth: Array
+(
+    [error] => Terjadi kesalahan saat proses login. Silakan coba lagi.
+)
+
+[18-Oct-2025 04:47:44 America/New_York] Auth Code: 4/0AVGzR1A2zhvvQMzSyahbvWQj_NLVc-B1K34zaWAvpO1TgymQN27Lz8C-vyHXqdYau1yJOw
+[18-Oct-2025 04:47:44 America/New_York] Token Response: Array
+(
+    [access_token] => ya29.a0AQQ_BDTDIZ-FYKe9tsPW2n-5SvxVdGQuruE5jLlkq2a6krltVWHETMCyPIdgBipFt0fLBJ4j1VTxm0227PURqwhyWjO3NE5YpaXeY5E30tU743MefZoSTAz0CqUrF3rKUdqrhZRfnTIag8rLOKGtJBGgchXRZzYIsxUwDALe-jOcHKJMilAH5NKyGtmuRnuMfS5XKb4aCgYKAcsSARcSFQHGX2MiDAEhMhViUMJpypaCkJ-FiQ0206
+    [expires_in] => 3599
+    [scope] => https://www.googleapis.com/auth/userinfo.profile openid https://www.googleapis.com/auth/userinfo.email
+    [token_type] => Bearer
+    [id_token] => eyJhbGciOiJSUzI1NiIsImtpZCI6ImZiOWY5MzcxZDU3NTVmM2UzODNhNDBhYjNhMTcyY2Q4YmFjYTUxN2YiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxMjIxMzc0NzkzNDkwNTY5MjkiLCJlbWFpbCI6InJhbmRhYW5nZ2k5MkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlR5WFh3QmpBczFKU2RaQ2ZnYjBkSWciLCJuYW1lIjoiQXJtYW4gQmVib3RvaCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMYjU1NDNOdTJUVFZYNG50Nll3RkEzZnRSVlhzZG5nMjJCSFdLVDBKV1d2RnVTa3c9czk2LWMiLCJnaXZlbl9uYW1lIjoiQXJtYW4iLCJmYW1pbHlfbmFtZSI6IkJlYm90b2giLCJpYXQiOjE3NjA3NzcyNjQsImV4cCI6MTc2MDc4MDg2NH0.D7Fpb65eaywAeDNjcjXbcRY_TlRVm4Y4gAf8BzQUE3gvu5j7uczrw0URgx3aKwaV4h7Rc5G7yUcETDCSQS99vs6DSlRao8mq9ccGVjd87pSLhvVst1iIhjVYNYRyRHvYT4TY5UuLtrbzeELUMvu_KRD8M1dYvhyvaDla34ojkWb60jJU7VrMdbo_FiyRUyWGZhtL9uaNFj1BpJ-OdNjxm4rSanIJ61VLxGfd0E4PJ3dDwZZugd-3hN-pjAZOyMWOYfxC9i7CsWpyuZex9xl2n_8l1D5rJbdIuzVz3BcrY33N65mdFARcvGzinFNsVxB0T5zjwFBMOX8dQQCxv8mO7Q
+    [created] => 1760777264
+)
+
+[18-Oct-2025 04:47:44 America/New_York] Fetching user info from Google...
+[18-Oct-2025 04:47:44 America/New_York] Successfully retrieved user info from Google
+[18-Oct-2025 04:47:44 America/New_York] Google User Data: Array
+(
+    [email] => randaanggi92@gmail.com
+    [name] => Arman Bebotoh
+    [google_id] => 102122137479349056929
+    [picture] => https://lh3.googleusercontent.com/a/ACg8ocLb5543Nu2TTVX4nt6YwFA3ftRVXsdng22BHWKT0JWWvFuSkw=s96-c
+)
+
+[18-Oct-2025 04:47:44 America/New_York] Checking if user exists in database...
+[18-Oct-2025 04:47:44 America/New_York] User database check result: User not found
+[18-Oct-2025 04:47:44 America/New_York] {
+    "timestamp": "2025-10-18 04:47:44",
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'",
+    "file": "/home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php",
+    "line": 141,
+    "trace": "#0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(141): PDO->prepare('INSERT INTO use...')\n#1 {main}",
+    "session_status": 2,
+    "session_id": "ae4a6f7373b1d3b4da58239dab4996ca",
+    "session_data": {
+        "error": "Terjadi kesalahan saat proses login. Silakan coba lagi."
+    },
+    "server": {
+        "request_uri": "/google-callback.php?code=4%2F0AVGzR1A2zhvvQMzSyahbvWQj_NLVc-B1K34zaWAvpO1TgymQN27Lz8C-vyHXqdYau1yJOw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none",
+        "http_referer": "https://alpha-tech-informatics.kesug.com/",
+        "remote_addr": "112.215.221.138"
+    }
+}
+[18-Oct-2025 04:47:44 America/New_York] Final state before error redirect: Array
+(
+    [session_status] => 2
+    [session_id] => ae4a6f7373b1d3b4da58239dab4996ca
+    [session_data] => Array
+        (
+            [error] => Terjadi kesalahan saat proses login. Silakan coba lagi.
+        )
+
+    [headers_sent] => 
+    [error_get_last] => 
+)
+
+[18-Oct-2025 04:47:48 America/New_York] === New Google Auth Request ===
+[18-Oct-2025 04:47:48 America/New_York] Session ID: ae4a6f7373b1d3b4da58239dab4996ca
+[18-Oct-2025 04:47:48 America/New_York] GET Data: Array
+(
+    [code] => 4/0AVGzR1B3emg67_swCRYZcpXfQ4XJKu3781ctgNTabovDd6v_HAc-JwxTB9rb8hZBm_lqzQ
+    [scope] => email profile https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid
+    [authuser] => 0
+    [prompt] => none
+)
+
+[18-Oct-2025 04:47:48 America/New_York] Session Data Before Auth: Array
+(
+    [error] => Terjadi kesalahan saat proses login. Silakan coba lagi.
+)
+
+[18-Oct-2025 04:47:48 America/New_York] Auth Code: 4/0AVGzR1B3emg67_swCRYZcpXfQ4XJKu3781ctgNTabovDd6v_HAc-JwxTB9rb8hZBm_lqzQ
+[18-Oct-2025 04:47:48 America/New_York] Token Response: Array
+(
+    [access_token] => ya29.a0AQQ_BDTbQeU_qoxhitxRv8U5CmYfJsG0F6HROAzBcS-KAVW0XOdBDW6nmg-cNtdA17CbjnhHXCD9Yp9FRmkwu5gASFtClr3u7lFu7fxVSEbOeQ_KpsOOvgoO2f-Mb36Uw-wpKIeymDY5cT0QvaejGRICuJQb6Kr-GzqcgZGUzv8KpIqC6JpEts9UYzqbE2v9onEybdEaCgYKAZwSARcSFQHGX2MiQxSf7EP1tFCuq8ZtdGlZOA0206
+    [expires_in] => 3598
+    [scope] => https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid
+    [token_type] => Bearer
+    [id_token] => eyJhbGciOiJSUzI1NiIsImtpZCI6ImZiOWY5MzcxZDU3NTVmM2UzODNhNDBhYjNhMTcyY2Q4YmFjYTUxN2YiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxMjIxMzc0NzkzNDkwNTY5MjkiLCJlbWFpbCI6InJhbmRhYW5nZ2k5MkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6ImJ5NTdHR2t2OGlWel9IOExtSXpVWFEiLCJuYW1lIjoiQXJtYW4gQmVib3RvaCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMYjU1NDNOdTJUVFZYNG50Nll3RkEzZnRSVlhzZG5nMjJCSFdLVDBKV1d2RnVTa3c9czk2LWMiLCJnaXZlbl9uYW1lIjoiQXJtYW4iLCJmYW1pbHlfbmFtZSI6IkJlYm90b2giLCJpYXQiOjE3NjA3NzcyNjgsImV4cCI6MTc2MDc4MDg2OH0.smc2R-rPuEVOS6VpNBv7v-FL6lG7PjXJRhndTnibvDgAPGCKcQFwKxR1ki0ykbuPK7-LcQw4rw5pMtUIPezIUh4taxorZBKDqdEV3PJdAZM_c8czcCFoC_AvTc5biP3QDGTffN7CwOh93kQ-C8maEjGOllXc8Ft-f0Ow11nhqCSbzIM8Lf0W-XeVGUUR2Loyma2k3X5qpcJmSmtAAQ-wBEHHy64N49MZ6gXDlfkwRApp_vxAYydlMGG_aHGqDJh9Om9iItuMGl8okVDrltuP46dkvVh6pk6gOz1qyvO6BU0c-zO5qWTcXgnAdfOvFWPI6az09kMx_2OxzE9WU1w3tA
+    [created] => 1760777268
+)
+
+[18-Oct-2025 04:47:48 America/New_York] Fetching user info from Google...
+[18-Oct-2025 04:47:48 America/New_York] Successfully retrieved user info from Google
+[18-Oct-2025 04:47:48 America/New_York] Google User Data: Array
+(
+    [email] => randaanggi92@gmail.com
+    [name] => Arman Bebotoh
+    [google_id] => 102122137479349056929
+    [picture] => https://lh3.googleusercontent.com/a/ACg8ocLb5543Nu2TTVX4nt6YwFA3ftRVXsdng22BHWKT0JWWvFuSkw=s96-c
+)
+
+[18-Oct-2025 04:47:48 America/New_York] Checking if user exists in database...
+[18-Oct-2025 04:47:48 America/New_York] User database check result: User not found
+[18-Oct-2025 04:47:48 America/New_York] {
+    "timestamp": "2025-10-18 04:47:48",
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'",
+    "file": "/home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php",
+    "line": 141,
+    "trace": "#0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(141): PDO->prepare('INSERT INTO use...')\n#1 {main}",
+    "session_status": 2,
+    "session_id": "ae4a6f7373b1d3b4da58239dab4996ca",
+    "session_data": {
+        "error": "Terjadi kesalahan saat proses login. Silakan coba lagi."
+    },
+    "server": {
+        "request_uri": "/google-callback.php?code=4%2F0AVGzR1B3emg67_swCRYZcpXfQ4XJKu3781ctgNTabovDd6v_HAc-JwxTB9rb8hZBm_lqzQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none",
+        "http_referer": "https://alpha-tech-informatics.kesug.com/",
+        "remote_addr": "112.215.221.138"
+    }
+}
+[18-Oct-2025 04:47:48 America/New_York] Final state before error redirect: Array
+(
+    [session_status] => 2
+    [session_id] => ae4a6f7373b1d3b4da58239dab4996ca
+    [session_data] => Array
+        (
+            [error] => Terjadi kesalahan saat proses login. Silakan coba lagi.
+        )
+
+    [headers_sent] => 
+    [error_get_last] => 
+)
+
+[18-Oct-2025 04:47:51 America/New_York] === New Google Auth Request ===
+[18-Oct-2025 04:47:51 America/New_York] Session ID: ae4a6f7373b1d3b4da58239dab4996ca
+[18-Oct-2025 04:47:51 America/New_York] GET Data: Array
+(
+    [code] => 4/0AVGzR1C8l4UhfkLdNGwxqOKH08bPE6ZiImzJ2bNUqagJzT8NiZz5XEZoOmEWQiKoPgbOew
+    [scope] => email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+    [authuser] => 0
+    [prompt] => none
+)
+
+[18-Oct-2025 04:47:51 America/New_York] Session Data Before Auth: Array
+(
+    [error] => Terjadi kesalahan saat proses login. Silakan coba lagi.
+)
+
+[18-Oct-2025 04:47:51 America/New_York] Auth Code: 4/0AVGzR1C8l4UhfkLdNGwxqOKH08bPE6ZiImzJ2bNUqagJzT8NiZz5XEZoOmEWQiKoPgbOew
+[18-Oct-2025 04:47:51 America/New_York] Token Response: Array
+(
+    [access_token] => ya29.a0AQQ_BDSfgYmXNpA57QUEqCbH4ZPjEu2WD1TrAuhHGFq14FNIW1KkT61GNOc0_gWbSUQob3_rvQgLDqMntUB33ESJB1Pv7a_dmMrm_kxHi7UfGWX0oTmpzQT45SikG9NLtIWiuShvGpAcFVXmm1DtjLugIMr71FltVlc2FO9XAJE7B-qyhmR4Bk82x0fj-ptqsq1y42gaCgYKAfsSARcSFQHGX2MifpRTCcgUaZ-4nogXkbk0YQ0206
+    [expires_in] => 3598
+    [scope] => https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid
+    [token_type] => Bearer
+    [id_token] => eyJhbGciOiJSUzI1NiIsImtpZCI6ImZiOWY5MzcxZDU3NTVmM2UzODNhNDBhYjNhMTcyY2Q4YmFjYTUxN2YiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxMjIxMzc0NzkzNDkwNTY5MjkiLCJlbWFpbCI6InJhbmRhYW5nZ2k5MkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InNVdnVuSHNMaEFDR0lmbzNGcWtDMXciLCJuYW1lIjoiQXJtYW4gQmVib3RvaCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMYjU1NDNOdTJUVFZYNG50Nll3RkEzZnRSVlhzZG5nMjJCSFdLVDBKV1d2RnVTa3c9czk2LWMiLCJnaXZlbl9uYW1lIjoiQXJtYW4iLCJmYW1pbHlfbmFtZSI6IkJlYm90b2giLCJpYXQiOjE3NjA3NzcyNzEsImV4cCI6MTc2MDc4MDg3MX0.HUVLIp7Khdikz12Hc7YrRYl4I3LA2ydXa2s_QLTiO5RDPYK5wlYGZlysg_xUaBP7_NqMalxBRqjp13YMUgaAnIeF0t3Yy7YgyL0c4u6tlkzKH04emzO6rE1_eduoFvJgtFT50W5Bna0q2Lt2t0KlV42SJId9e2ywbalw0SvezWYppyE9p9n8wrpTFiTuggLodftntDmHUNvwM8sBZoWBFl-YWYh1IN4fJ9XeMUcSyW1Z4B-okCZqP6RewOTbuAa4RstdZ97jmgH2YLaFf-MVfAKuC5GDDGjWEVKXpDGZc7nwq8Zj77IHaDnHMqh9hqvcRljq48tufBIP1bNGDuqdPA
+    [created] => 1760777271
+)
+
+[18-Oct-2025 04:47:51 America/New_York] Fetching user info from Google...
+[18-Oct-2025 04:47:51 America/New_York] Successfully retrieved user info from Google
+[18-Oct-2025 04:47:51 America/New_York] Google User Data: Array
+(
+    [email] => randaanggi92@gmail.com
+    [name] => Arman Bebotoh
+    [google_id] => 102122137479349056929
+    [picture] => https://lh3.googleusercontent.com/a/ACg8ocLb5543Nu2TTVX4nt6YwFA3ftRVXsdng22BHWKT0JWWvFuSkw=s96-c
+)
+
+[18-Oct-2025 04:47:51 America/New_York] Checking if user exists in database...
+[18-Oct-2025 04:47:51 America/New_York] User database check result: User not found
+[18-Oct-2025 04:47:51 America/New_York] {
+    "timestamp": "2025-10-18 04:47:51",
+    "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'",
+    "file": "/home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php",
+    "line": 141,
+    "trace": "#0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(141): PDO->prepare('INSERT INTO use...')\n#1 {main}",
+    "session_status": 2,
+    "session_id": "ae4a6f7373b1d3b4da58239dab4996ca",
+    "session_data": {
+        "error": "Terjadi kesalahan saat proses login. Silakan coba lagi."
+    },
+    "server": {
+        "request_uri": "/google-callback.php?code=4%2F0AVGzR1C8l4UhfkLdNGwxqOKH08bPE6ZiImzJ2bNUqagJzT8NiZz5XEZoOmEWQiKoPgbOew&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=0&prompt=none",
+        "http_referer": "https://alpha-tech-informatics.kesug.com/",
+        "remote_addr": "112.215.221.138"
+    }
+}
+[18-Oct-2025 04:47:51 America/New_York] Final state before error redirect: Array
+(
+    [session_status] => 2
+    [session_id] => ae4a6f7373b1d3b4da58239dab4996ca
+    [session_data] => Array
+        (
+            [error] => Terjadi kesalahan saat proses login. Silakan coba lagi.
+        )
+
+    [headers_sent] => 
+    [error_get_last] => 
+)
+

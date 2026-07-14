@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dynamic Theme Components */
+@layer base {
+  :root {
+    /* These will be overridden by dynamic-theme.php */
+    --primary-color: #1e3a8a;
+    --secondary-color: #1e40af;
+  }
+}
+
+@layer components {
+  /* Theme-aware button styles */
+  .btn-primary {
+    @apply bg-primary text-white font-bold py-2 px-4 rounded transition-all duration-300;
+  }
+
+  .btn-primary:hover {
+    @apply bg-secondary transform -translate-y-0.5 shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white font-bold py-2 px-4 rounded transition-all duration-300;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-primary transform -translate-y-0.5 shadow-lg;
+  }
+
+  .btn-outline-primary {
+    @apply bg-transparent text-primary border-2 border-primary font-bold py-2 px-4 rounded transition-all duration-300;
+  }
+
+  .btn-outline-primary:hover {
+    @apply bg-primary text-white transform -translate-y-0.5 shadow-lg;
+  }
+
+  .btn-outline-secondary {
+    @apply bg-transparent text-secondary border-2 border-secondary font-bold py-2 px-4 rounded transition-all duration-300;
+  }
+
+  .btn-outline-secondary:hover {
+    @apply bg-secondary text-white transform -translate-y-0.5 shadow-lg;
+  }
+
+  /* Theme-aware card styles */
+  .card-theme {
+    @apply bg-white rounded-lg shadow-lg p-6 border transition-all duration-300;
+  }
+
+  .card-theme:hover {
+    @apply shadow-xl transform -translate-y-1;
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
+  }
+
+  /* Theme-aware navigation */
+  .nav-theme {
+    @apply px-6 py-4 flex justify-between items-center transition-all duration-300;
+  }
+
+  /* Gradient text effect */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Theme colors for backgrounds */
+  .bg-theme-primary {
+    background-color: var(--primary-color);
+  }
+
+  .bg-theme-secondary {
+    background-color: var(--secondary-color);
+  }
+
+  /* Theme gradients */
+  .bg-gradient-theme {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  }
+
+  .bg-gradient-theme-reverse {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+  }
+}
+
+/* Animation keyframes for theme */
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes theme-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes theme-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.theme-fade-in {
+  animation: theme-fade-in 0.6s ease-out;
+}
+
+.theme-slide-in-left {
+  animation: theme-slide-in-left 0.8s ease-out;
+}
+
+.theme-slide-in-right {
+  animation: theme-slide-in-right 0.8s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gradient-text {
+    -webkit-text-fill-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+}

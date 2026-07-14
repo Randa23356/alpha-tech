@@ -1,0 +1,23 @@
+[18-Oct-2025 05:03:13 America/New_York] ===== GOOGLE CALLBACK DIJALANKAN =====
+[18-Oct-2025 05:03:13 America/New_York] GET Data: Array
+(
+    [code] => 4/0AVGzR1B3WPF27MP4ZFhONJjXkTeWe808Bj5_sCs8wdChx0inR3PMhWS8RkscEo5_tC2rfw
+    [scope] => email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid
+    [authuser] => 0
+    [prompt] => none
+)
+
+[18-Oct-2025 05:03:13 America/New_York] Auth Code: 4/0AVGzR1B3WPF27MP4ZFhONJjXkTeWe808Bj5_sCs8wdChx0inR3PMhWS8RkscEo5_tC2rfw
+[18-Oct-2025 05:03:14 America/New_York] Token Response: Array
+(
+    [access_token] => ya29.a0AQQ_BDQrrCndOUh4iO2ExO1Wcd6MOfY1BCLrE-Yvu4LtapDfWU1dWkGTffWtA83M1Wf-NgebyufmqJJwxRDJTp9a7Kz8RceGDpI3Q0763gyFcQ1v7MLFP06jvHlk2aMwMMvOpJYde7Mgzz1KVGLGt2dbWdI4R9zjzz8tTPRgJ9e4Dx8a5kTHFgH5a7x3D-waRvtowDUaCgYKAdsSARcSFQHGX2MieAA3d-Y-C5z_jHEiSS6fLQ0206
+    [expires_in] => 3598
+    [scope] => openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+    [token_type] => Bearer
+    [id_token] => eyJhbGciOiJSUzI1NiIsImtpZCI6ImZiOWY5MzcxZDU3NTVmM2UzODNhNDBhYjNhMTcyY2Q4YmFjYTUxN2YiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI3Mjk5OTQ3NTQ4NzMtbTdxYmprOGphZmdxdnJ2cG1wc3BqbnFwcWFldWlyajEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDIxMjIxMzc0NzkzNDkwNTY5MjkiLCJlbWFpbCI6InJhbmRhYW5nZ2k5MkBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlFLWkhINjFoYWYtXzg0R2kzU3BBZHciLCJuYW1lIjoiQXJtYW4gQmVib3RvaCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMYjU1NDNOdTJUVFZYNG50Nll3RkEzZnRSVlhzZG5nMjJCSFdLVDBKV1d2RnVTa3c9czk2LWMiLCJnaXZlbl9uYW1lIjoiQXJtYW4iLCJmYW1pbHlfbmFtZSI6IkJlYm90b2giLCJpYXQiOjE3NjA3NzgxOTQsImV4cCI6MTc2MDc4MTc5NH0.q9bq0QZO7OUb6NvbRAO-vpsKcwNlaVaVHN-JPb3Z6kRzk-eQot9in8C9eoPyv74cCG8KAceqL1uYNIJ3tfX-VO7mFP9moLRQqz7FqOkNqOZFv5cF_tSDyTIOGQbT1huREDN0a3iJ59S445ZG9n0H32Gco-ATSq7y8L8ANDbCCSVtyrAifD2h7z5i4pnmm4rBp3dML-vfolBmiH80Otyjhc0MNT4TpXSOqrjSVUKrG1t4xfyXwepW5tlhLNjBYlfL6a1aynROKTtI3o1QaZ3GfODxi0vHxI3PWqtQZe39iMW6Rh0eNrHnoux6uc6Ljyz01XyjmMJMr_bul0HehaFvrA
+    [created] => 1760778194
+)
+
+[18-Oct-2025 05:03:14 America/New_York] Google login error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'INSERT INTO'
+[18-Oct-2025 05:03:14 America/New_York] Stack trace: #0 /home/vol13_6/infinityfree.com/if0_40177206/htdocs/google-callback.php(132): PDO->prepare('INSERT INTO use...')
+#1 {main}

@@ -1,0 +1,90 @@
+RewriteEngine On
+
+# Allow direct access to asset files
+RewriteRule ^(public/.*\.(css|js|jpe?g|png|gif|ico|svg|woff2?|ttf|eot))$ - [L]
+
+# Disable directory listing
+Options -Indexes
+
+# Set DirectoryIndex
+DirectoryIndex index.php
+
+# Protect sessions directory from web access
+RedirectMatch 404 /public/sessions/.*
+
+# Handle URLs with /informatics_a/ prefix - strip the prefix for routing (only for relative BASE_URL)
+# RewriteRule ^informatics_a/(.*)$ $1 [L]
+
+# Allow direct access to AJAX endpoints and test files
+RewriteRule ^(ajax|test_).*\.php$ - [L]
+
+# Allow direct access to existing files (CSS, JS, images, uploads, etc)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ============================================
+# PUBLIC ROUTES (Homepage)
+# ============================================
+RewriteRule ^home/?$ public/index.php [L]
+RewriteRule ^activity_detail/?$ activity_detail.php [L]
+
+# Google OAuth Callback
+RewriteRule ^auth/google/callback/?$ google-callback.php [L,QSA]
+RewriteRule ^login/google/callback/?$ google-callback.php [L]
+
+# ============================================
+# AUTH ROUTES
+# ============================================
+RewriteRule ^login/?$ login.php [L]
+RewriteRule ^register/?$ register.php [L]
+RewriteRule ^logout/?$ logout.php [L]
+RewriteRule ^google-callback/?$ google-callback.php [L]
+
+# ============================================
+# PUBLIC PAGES
+# ============================================
+RewriteRule ^activities/?$ public/activities.php [L]
+RewriteRule ^about/?$ public/about.php [L]
+RewriteRule ^gallery/?$ gallery.php [L]
+RewriteRule ^contact/?$ contact.php [L]
+RewriteRule ^announcement/?$ announcement.php [L]
+
+# ============================================
+# USER ROUTES (Protected)
+# ============================================
+RewriteRule ^dashboard/?$ views/user/dashboard.php [L]
+RewriteRule ^profile/?$ views/user/profile.php [L]
+RewriteRule ^change-password/?$ views/user/change_password.php [L]
+RewriteRule ^post/?$ views/user/post.php [L]
+RewriteRule ^trash/?$ trash.php [L]
+RewriteRule ^user/([0-9]+)/?$ user_profile.php?id=$1 [L]
+
+# ============================================
+# ADMIN ROUTES (Protected - Admin & Korti)
+# ============================================
+RewriteRule ^admin/?$ admin/dashboard.php [L]
+RewriteRule ^admin/posts/?$ admin/manage_posts.php [L]
+RewriteRule ^admin/gallery/?$ admin/manage_gallery.php [L]
+RewriteRule ^admin/comments/?$ admin/manage_comments.php [L]
+RewriteRule ^admin/announcements/?$ admin/announcement.php [L]
+RewriteRule ^admin/settings/?$ admin/site_settings.php [L]
+RewriteRule ^admin/features/?$ admin/manage_features.php [L]
+RewriteRule ^admin/users/?$ admin/manage_users.php [L]
+RewriteRule ^admin/users/([0-9]+)/?$ admin/users_detail.php?id=$1 [L]
+RewriteRule ^admin/contact_messages/?$ admin/contact_messages.php [L]
+RewriteRule ^admin/contact_messages/([0-9]+)/mark-read/?$ admin/contact_messages.php?action=mark_read&id=$1 [L]
+RewriteRule ^admin/hero_slider/?$ admin/manage_hero_slider.php [L]
+RewriteRule ^admin/navbar_icons/?$ admin/navbar_icons.php [L]
+
+# ============================================
+# KORTI ROUTES (Only announcements)
+# ============================================
+RewriteRule ^korti/?$ korti/dashboard.php [L]
+RewriteRule ^korti/announcements/?$ korti/announcements.php [L]
+RewriteRule ^korti/comments/?$ korti/comments.php [L]
+RewriteRule ^korti/posts/?$ korti/posts.php [L]
+RewriteRule ^korti/create-post/?$ korti/create_post.php [L]
+RewriteRule ^korti/index/?$ korti/index.php [L]
+
+RewriteRule ^download/?$ download.php [L]

@@ -1,0 +1,478 @@
+<?php
+ini_set("display_errors", 1);
+ini_set("display_startup_errors", 1);
+error_reporting(E_ALL);
+
+// informatics_a/public/about.php - Halaman Tentang
+session_start();
+require_once __DIR__ . "/../src/config/db.php";
+require_once __DIR__ . "/../src/config/urls.php";
+
+// Ambil stats
+try {
+    // Check if deleted_at column exists
+    $deletedAtCheck = $pdo->query("SHOW COLUMNS FROM posts LIKE 'deleted_at'")->fetch();
+    $deletedAtCondition = $deletedAtCheck ? 'AND deleted_at IS NULL' : '';
+
+    $stmt = $pdo->query("SELECT COUNT(*) as total FROM posts WHERE status = 'approved' {$deletedAtCondition}");
+    $total_kegiatan = $stmt->fetch()['total'] ?? 0;
+    
+    $stmt = $pdo->query("SELECT COUNT(*) as total FROM users WHERE role = 'user'");
+    $total_users = $stmt->fetch()['total'] ?? 0;
+    
+    // Count total foto (semua foto dari post_images table)
+    $stmt = $pdo->query("SELECT COUNT(*) as total FROM post_images pi JOIN posts p ON pi.post_id = p.id WHERE p.status = 'approved' {$deletedAtCondition}");
+    $total_photos = $stmt->fetch()['total'] ?? 0;
+
+    // Ambil semua foto dari semua kegiatan untuk galeri di about page
+    $all_photos = [];
+    if ($total_photos > 0) {
+        // First get all approved posts
+        $stmt = $pdo->query(
+            "SELECT DISTINCT posts.id, posts.title as caption, posts.content as description, posts.date as uploaded_at, users.username, users.id as user_id
+             FROM posts
+             JOIN users ON posts.user_id = users.id
+             WHERE posts.status = 'approved' {$deletedAtCondition}
+             ORDER BY posts.date DESC"
+        );
+        $posts = $stmt->fetchAll();
+
+        // Then get all images for each post
+        foreach ($posts as &$post) {
+            $stmt = $pdo->prepare("SELECT image_path, image_order FROM post_images WHERE post_id = ? ORDER BY image_order");
+            $stmt->execute([$post['id']]);
+            $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach ($images as $image) {
+                $all_photos[] = [
+                    'id' => $post['id'],
+                    'image' => $image['image_path'],
+                    'title' => $post['caption'],
+                    'description' => $post['description'],
+                    'username' => $post['username'],
+                    'user_id' => $post['user_id'],
+                    'date' => $post['uploaded_at'],
+                    'image_order' => $image['image_order']
+                ];
+            }
+        }
+    }
+    
+    // Ambil about features (Kenapa Memilih Platform Ini?)
+    $stmt = $pdo->query("SELECT * FROM about_features WHERE is_active = 1 ORDER BY display_order ASC, id ASC");
+    $about_features_list = $stmt->fetchAll();
+    
+    // Ambil platform features (Fitur Platform Detail)
+    $stmt = $pdo->query("SELECT * FROM platform_features WHERE is_active = 1 ORDER BY display_order ASC, id ASC");
+    $platform_features_list = $stmt->fetchAll();
+} catch (Exception $e) {
+    $total_kegiatan = 0;
+    $total_users = 0;
+    $total_photos = 0;
+    $settings = [];
+    $about_features_list = [];
+    $platform_features_list = [];
+}
+
+$about_title = $settings['about_title'] ?? 'Tentang Informatics A';
+$about_description = $settings['about_description'] ?? 'Platform kolaborasi dan dokumentasi kelas Informatika terbaik untuk berbagi kegiatan, pengumuman, dan galeri foto.';
+$about_vision = $settings['about_vision'] ?? 'Menjadi platform terdepan dalam mendokumentasikan dan berbagi kegiatan kelas.';
+$about_mission = $settings['about_mission'] ?? 'Memfasilitasi kolaborasi antar mahasiswa melalui teknologi.';
+$about_feature_1 = $settings['about_feature_1'] ?? 'Interface modern dan mudah digunakan';
+$about_feature_2 = $settings['about_feature_2'] ?? 'Sistem approval untuk menjaga kualitas konten';
+$about_feature_3 = $settings['about_feature_3'] ?? 'Galeri foto untuk dokumentasi visual';
+$about_feature_4 = $settings['about_feature_4'] ?? 'Responsive design untuk semua perangkat';
+$platform_feature_1_title = $settings['platform_feature_1_title'] ?? 'Posting Kegiatan';
+$platform_feature_1_desc = $settings['platform_feature_1_desc'] ?? 'Bagikan kegiatan kelas dengan mudah dan cepat. Setiap postingan akan di-review oleh admin sebelum dipublikasikan.';
+$platform_feature_2_title = $settings['platform_feature_2_title'] ?? 'Galeri Foto';
+$platform_feature_2_desc = $settings['platform_feature_2_desc'] ?? 'Dokumentasi visual kegiatan dalam satu tempat. Foto otomatis diambil dari kegiatan yang sudah di-approve.';
+$platform_feature_3_title = $settings['platform_feature_3_title'] ?? 'Komentar';
+$platform_feature_3_desc = $settings['platform_feature_3_desc'] ?? 'Diskusi dan berikan feedback pada setiap kegiatan. Interaksi antar anggota kelas lebih mudah.';
+$platform_feature_4_title = $settings['platform_feature_4_title'] ?? 'Pengumuman';
+$platform_feature_4_desc = $settings['platform_feature_4_desc'] ?? 'Informasi penting dari koordinator kelas dan admin. Pastikan tidak ketinggalan update terbaru.';
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang - Informatics A</title>
+    <link href=" <?= asset('tailwind.css') ?>" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDelay {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        .animate-fade-in-delay {
+            animation: fadeInDelay 1s ease-out 0.3s both;
+        }
+        .stats-counter {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+    <?php include __DIR__ . '/../includes/navbar.php'; ?>
+
+    <!-- Header -->
+    <header class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-20 px-6 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="7" cy="7" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+
+        <!-- Animated Background Shapes -->
+        <div class="absolute top-10 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+
+        <div class="relative max-w-6xl mx-auto text-center">
+            <div class="flex justify-center mb-6">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-white/20 rounded-full blur-xl animate-pulse"></div>
+                    <svg class="relative w-24 h-24 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent animate-fade-in">
+                Tentang Informatics A
+            </h1>
+            <p class="text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay">
+                Platform digital untuk kolaborasi dan dokumentasi kelas yang menghubungkan mahasiswa dalam satu ekosistem terintegrasi
+            </p>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg class="w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-16">
+        <!-- About Section -->
+        <div class="relative bg-white rounded-3xl shadow-xl p-12 mb-16 overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-50 to-transparent rounded-full -translate-y-32 translate-x-32"></div>
+            <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-indigo-50 to-transparent rounded-full translate-y-24 -translate-x-24"></div>
+
+            <div class="relative">
+                <div class="text-center mb-12">
+                    <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Tentang Platform
+                    </div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-blue-900 to-indigo-900 bg-clip-text text-transparent">
+                        <?= htmlspecialchars($about_title) ?>
+                    </h2>
+                </div>
+
+                <div class="prose prose-xl max-w-none text-gray-700 leading-relaxed mb-12">
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        <?= nl2br(htmlspecialchars($about_description)) ?>
+                    </p>
+                </div>
+
+                <!-- Vision & Mission -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="group relative bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition-all duration-300">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-3">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                            Visi
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            <?= nl2br(htmlspecialchars($about_vision)) ?>
+                        </p>
+                    </div>
+
+                    <div class="group relative bg-gradient-to-br from-indigo-50 via-purple-50 to-indigo-100 p-8 rounded-2xl border border-indigo-100 hover:shadow-lg transition-all duration-300">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-indigo-500/10 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-indigo-900 mb-4 flex items-center gap-3">
+                            <div class="w-3 h-3 bg-indigo-500 rounded-full"></div>
+                            Misi
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            <?= nl2br(htmlspecialchars($about_mission)) ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-gradient-to-br from-blue-900 to-blue-800 text-white p-8 rounded-xl text-center">
+                <div class="text-5xl font-bold mb-2"><?= $total_kegiatan ?></div>
+                <div class="text-blue-100">Kegiatan Terdokumentasi</div>
+            </div>
+            <div class="bg-gradient-to-br from-blue-900 to-blue-800 text-white p-8 rounded-xl text-center">
+                <div class="text-5xl font-bold mb-2"><?= $total_users ?></div>
+                <div class="text-blue-100">Anggota Aktif</div>
+            </div>
+            <div class="bg-gradient-to-br from-blue-900 to-blue-800 text-white p-8 rounded-xl text-center">
+                <div class="text-5xl font-bold mb-2"><?= $total_photos ?></div>
+                <div class="text-blue-100">Foto & Dokumentasi</div>
+            </div>
+        <!-- Foto & Dokumentasi Gallery Section -->
+        <?php if (!empty($all_photos)): ?>
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">Foto & Dokumentasi</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Dokumentasi visual dari semua kegiatan kelas Informatics A yang telah terselenggara
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <?php foreach ($all_photos as $photo): ?>
+                    <div class="relative aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+                         onclick='openPhotoModal(<?= json_encode([
+                             "id" => $photo["id"],
+                             "image" => $photo["image"],
+                             "title" => $photo["title"],
+                             "description" => $photo["description"],
+                             "username" => $photo["username"],
+                             "user_id" => $photo["user_id"],
+                             "date" => $photo["date"]
+                         ]) ?>)'>
+                        <img src=" <?= BASE_URL ?>/public/uploads/<?= htmlspecialchars($photo["image"]) ?>"
+                             alt="<?= htmlspecialchars($photo["title"]) ?>"
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        
+                        <!-- Overlay on hover -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                            <div class="text-white text-xs">
+                                <p class="font-semibold line-clamp-2 leading-tight"><?= htmlspecialchars($photo["title"]) ?></p>
+                                <p class="text-gray-300 mt-1">Oleh <?= htmlspecialchars($photo["username"]) ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="gallery.php" class="inline-flex items-center gap-2 bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition shadow-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    Lihat Semua Foto
+                </a>
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="bg-white rounded-xl shadow-md p-8 mb-12">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 text-center">Kenapa Memilih Platform Ini?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <?php foreach ($about_features_list as $feature): ?>
+                <div class="flex gap-4 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-700 text-lg"><?= htmlspecialchars($feature['feature_text']) ?></p>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        
+
+        <!-- Platform Features Detail -->
+        <?php if (!empty($platform_features_list)): ?>
+        <div class="bg-white rounded-xl shadow-md p-8 mb-12">
+            <h2 class="text-3xl font-bold text-blue-900 mb-8 text-center">Fitur Platform</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <?php 
+                $icon_paths = [
+                    'document' => 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+                    'photo' => 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
+                    'chat' => 'M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z',
+                    'announcement' => 'M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z',
+                    'default' => 'M5 13l4 4L19 7'
+                ];
+                foreach ($platform_features_list as $feature): 
+                    $icon_path = $icon_paths[$feature['icon_name']] ?? $icon_paths['default'];
+                ?>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?= $icon_path ?>"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2"><?= htmlspecialchars($feature['title']) ?></h3>
+                        <p class="text-gray-600"><?= htmlspecialchars($feature['description']) ?></p>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <!-- CTA -->
+        <div class="bg-gradient-to-r from-blue-900 to-blue-800 rounded-xl p-12 text-center text-white">
+            <h2 class="text-3xl font-bold mb-4">Bergabung Sekarang!</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Jadilah bagian dari komunitas Informatics A dan mulai berbagi kegiatan kelas kamu.</p>
+            <div class="flex gap-4 justify-center">
+                <a href="../register.php" class="bg-white text-blue-900 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition shadow-lg">Daftar Sekarang</a>
+                <a href="../login.php" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition">Login</a>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <a href="index.php" class="inline-flex items-center gap-2 text-blue-900 font-semibold hover:text-blue-700 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Kembali ke Beranda
+            </a>
+        </div>
+    </main>
+
+    <?php include __DIR__ . '/../includes/footer.php'; ?>
+
+    <!-- Photo Modal Popup -->
+    <div id="photoModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black bg-opacity-50" onclick="closePhotoModal(event)">
+        <div class="relative max-w-xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button onclick="closePhotoModal()" class="absolute top-3 right-3 z-10 bg-white text-gray-900 w-8 h-8 rounded-full hover:bg-gray-100 transition shadow-lg flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <!-- Image Section -->
+            <div class="bg-gray-100 p-4 flex items-center justify-center min-h-[200px]">
+                <img id="modalImage" src="" alt="" class="max-w-full max-h-96 object-contain rounded-lg" onload="console.log('Image loaded')" onerror="console.log('Image failed to load')">
+            </div>
+
+            <!-- Info Section -->
+            <div class="p-4 bg-white flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        <span id="modalUserInitial"></span>
+                    </div>
+                    <div class="cursor-pointer hover:bg-gray-50 rounded-lg p-2 transition-colors" onclick="redirectToUserProfile()">
+                        <p id="modalUsername" class="font-semibold text-gray-900 text-sm">
+                            <a href="" id="modalProfileLink" class="hover:text-blue-700 transition">Username</a>
+                        </p>
+                        <p id="modalDate" class="text-xs text-gray-500"></p>
+                    </div>
+                </div>
+
+                <a id="modalDownload" href="" download class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium flex items-center gap-2 text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                    Download
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentModalData = null; // Store modal data globally
+
+        function openPhotoModal(data) {
+            console.log('openPhotoModal called with data:', data);
+            currentModalData = data; // Store data for later use
+            const modal = document.getElementById('photoModal');
+
+            if (!modal) {
+                console.error('Modal element not found!');
+                return;
+            }
+
+            const imagePath = '<?= BASE_URL ?>/public/uploads/' + data.image;
+            console.log('Image path:', imagePath);
+
+            // Set modal content with error checking
+            const modalImage = document.getElementById('modalImage');
+            const modalUsername = document.getElementById('modalUsername');
+            const modalUserInitial = document.getElementById('modalUserInitial');
+            const modalDate = document.getElementById('modalDate');
+            const modalDownload = document.getElementById('modalDownload');
+            const modalProfileLink = document.getElementById('modalProfileLink');
+
+            if (modalImage) modalImage.src = imagePath;
+            if (modalImage) modalImage.alt = data.title || 'Photo';
+            if (modalUsername) modalUsername.textContent = data.username || 'Unknown User';
+            if (modalUserInitial) modalUserInitial.textContent = (data.username || 'U').charAt(0).toUpperCase();
+            if (modalDate) modalDate.textContent = data.date ? new Date(data.date).toLocaleDateString('id-ID', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            }) : '';
+            if (modalDownload) modalDownload.href = imagePath;
+
+            // Set profile link if user is logged in
+            if (modalProfileLink) {
+                modalProfileLink.href = 'user_profile.php?id=' + (data.user_id || '');
+                modalProfileLink.textContent = data.username || 'User';
+                modalProfileLink.style.display = 'inline';
+                console.log('Profile link set:', modalProfileLink.href);
+            } else {
+                console.error('modalProfileLink element not found!');
+            }
+
+            console.log('Showing modal...');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            console.log('Modal should be visible now');
+        }
+
+        function redirectToUserProfile() {
+            if (currentModalData) {
+                window.location.href = 'user_profile.php?id=' + currentModalData.user_id;
+            } else {
+                console.error('No modal data available');
+            }
+        }
+
+        function closePhotoModal(event) {
+            // Allow closing from overlay click
+            if (event && event.currentTarget !== event.target) return;
+
+            const modal = document.getElementById('photoModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePhotoModal();
+            }
+        });
+    </script>
+</body>
+</html>

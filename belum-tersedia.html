@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Halaman Sedang Dalam Proses</title>
+  <style>
+    :root {
+      --primary-color: #4A90E2;
+      --background-color: #F8FAFB;
+      --text-color: #333333;
+      --accent-color: #50E3C2;
+      --radius: 8px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: var(--background-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+      padding: 20px;
+    }
+    .wrapper {
+      text-align: center;
+      background-color: white;
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .wrapper::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 100px;
+      height: 100px;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: float 6s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(10px) translateX(-10px); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      color: var(--primary-color);
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
+      color: #555555;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      font-size: 1rem;
+      color: white;
+      background-color: var(--primary-color);
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: blue;
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .wrapper {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Oops! Halaman Belum Tersedia</h1>
+    <p>Kami mohon maaf, halaman yang Anda tuju saat ini sedang dalam proses pengembangan. Silakan coba kembali nanti atau hubungi kami jika Anda memerlukan bantuan.</p>
+    <a class="btn" href="/">Kembali ke Beranda</a>
+  </div>
+</body>
+</html>

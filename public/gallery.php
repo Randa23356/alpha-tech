@@ -365,7 +365,7 @@ try {
                     <?php foreach ($all_photos as $index => $photo): ?>
                         <div class="gallery-item bg-white rounded-3xl shadow-xl hover:shadow-2xl overflow-hidden group animate-fade-in-up"
                              style="animation-delay: <?= ($index % 12) * 0.1 ?>s;"
-                             onclick="openPhotoModal('<?= htmlspecialchars($photo['image_path']) ?>', '<?= htmlspecialchars($photo['title']) ?>', '<?= htmlspecialchars($photo['username']) ?>', '<?= htmlspecialchars($photo['date']) ?>')">
+                             onclick="openPhotoModal('<?= htmlspecialchars($photo['image_path']) ?>', '<?= htmlspecialchars($photo['title']) ?>', '<?= htmlspecialchars($photo['username']) ?>', '<?= htmlspecialchars($photo['date']) ?>', '<?= htmlspecialchars($photo['profile_pic'] ?? '') ?>')">
 
                             <div class="relative overflow-hidden aspect-[4/3]">
                                 <img src="<?= upload_url(htmlspecialchars($photo['image_path'])) ?>"
@@ -486,14 +486,15 @@ try {
     <script>
         let currentPhotoData = {};
 
-        function openPhotoModal(imagePath, title, author, date) {
-            currentPhotoData = { imagePath, title, author, date };
+        function openPhotoModal(imagePath, title, author, date, profilePic) {
+            currentPhotoData = { imagePath, title, author, date, profilePic };
 
             const modal = document.getElementById('photoModal');
             const modalImage = document.getElementById('modalImage');
             const modalTitle = document.getElementById('modalTitle');
             const modalAuthor = document.getElementById('modalAuthor');
             const modalDate = document.getElementById('modalDate');
+            const modalUserInitial = document.getElementById('modalUserInitial');
 
             modalImage.src = `<?= BASE_URL ?>/public/uploads/${imagePath}`;
             modalTitle.textContent = title;
@@ -503,6 +504,10 @@ try {
                 month: 'long',
                 year: 'numeric'
             });
+
+            if (modalUserInitial) {
+                modalUserInitial.textContent = (author || 'U').charAt(0).toUpperCase();
+            }
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');

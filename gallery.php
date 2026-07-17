@@ -219,18 +219,8 @@ try {
             <!-- Info Section -->
             <div class="p-4 bg-white flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <?php if (!empty($photo['profile_pic'])): ?>
-                        <?php if (strpos($photo['profile_pic'], 'http') === 0): ?>
-                            <img src="<?= htmlspecialchars($photo['profile_pic']) ?>" 
-                                 alt="Avatar" class="w-8 h-8 rounded-full object-cover">
-                        <?php else: ?>
-                            <img src=" <?= BASE_URL ?>/public/uploads/<?= basename(htmlspecialchars($photo['profile_pic'])) ?>" 
-                                 alt="Avatar" class="w-8 h-8 rounded-full object-cover">
-                        <?php endif; ?>
-                    <?php else: ?>
-                        <img src="<?= url('public/default-avatar.php?initial=' . urlencode(substr($photo['username'], 0, 1)) . '&color=' . urlencode($primary_color)) ?>" 
-                             alt="Default Avatar" class="w-8 h-8 rounded-full object-cover">
-                    <?php endif; ?>
+                    <img id="modalAvatar" src="" alt="Avatar" class="w-8 h-8 rounded-full object-cover hidden">
+                    <img id="modalAvatarDefault" src="" alt="Default Avatar" class="w-8 h-8 rounded-full object-cover hidden">
                     <div class="cursor-pointer hover:bg-gray-50 rounded-lg p-2 transition-colors" onclick="redirectToUserProfile()">
                         <p id="modalUsername" class="font-semibold text-gray-900 text-sm">
                             <a href="" id="modalProfileLink" class="theme-hover-primary transition">Username</a>
@@ -283,6 +273,23 @@ try {
                 year: 'numeric'
             }) : '';
             if (modalDownload) modalDownload.href = imagePath;
+
+            // Set profile avatar
+            const modalAvatar = document.getElementById('modalAvatar');
+            const modalAvatarDefault = document.getElementById('modalAvatarDefault');
+            if (data.profile_pic) {
+                if (data.profile_pic.startsWith('http')) {
+                    modalAvatar.src = data.profile_pic;
+                } else {
+                    modalAvatar.src = '<?= BASE_URL ?>/public/uploads/' + data.profile_pic.replace(/^.*\//, '');
+                }
+                modalAvatar.classList.remove('hidden');
+                modalAvatarDefault.classList.add('hidden');
+            } else {
+                modalAvatarDefault.src = '<?= url("public/default-avatar.php?initial=") ?>' + (data.username || 'U').charAt(0).toUpperCase() + '&color=<?= urlencode($primary_color) ?>';
+                modalAvatarDefault.classList.remove('hidden');
+                modalAvatar.classList.add('hidden');
+            }
 
             // Set profile link if user is logged in
             if (modalProfileLink) {

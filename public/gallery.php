@@ -69,6 +69,24 @@ try {
     // Count total photos
     $total_photos = count($all_photos);
 
+    // Juga ambil gambar dari hero slider
+    try {
+        $stmt = $pdo->query("SELECT id, title, subtitle, background_image, slide_order FROM hero_slides WHERE is_active = 1 AND background_image IS NOT NULL AND background_image != '' ORDER BY slide_order ASC");
+        $hero_slides = $stmt->fetchAll();
+        foreach ($hero_slides as $slide) {
+            $all_photos[] = [
+                'image_path' => 'uploads/hero/' . $slide['background_image'],
+                'image_order' => $slide['slide_order'],
+                'title' => $slide['title'] ?: ($slide['subtitle'] ?: 'Slider'),
+                'content' => '',
+                'date' => date('Y-m-d'),
+                'username' => 'Admin',
+                'user_id' => 0,
+            ];
+        }
+    } catch (Exception $e) {
+        // skip
+    }
 } catch (Exception $e) {
     $all_photos = [];
     $photos_by_post = [];

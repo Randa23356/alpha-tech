@@ -69,6 +69,26 @@ try {
             ];
         }
     }
+    // Juga ambil gambar dari hero slider
+    try {
+        $stmt = $pdo->query("SELECT id, title, subtitle, background_image, slide_order FROM hero_slides WHERE is_active = 1 AND background_image IS NOT NULL AND background_image != '' ORDER BY slide_order ASC");
+        $hero_slides = $stmt->fetchAll();
+        foreach ($hero_slides as $slide) {
+            $photos[] = [
+                'id' => 'slide_' . $slide['id'],
+                'image' => 'uploads/hero/' . $slide['background_image'],
+                'title' => $slide['title'] ?: ($slide['subtitle'] ?: 'Slider'),
+                'description' => '',
+                'username' => 'Admin',
+                'user_id' => 0,
+                'date' => date('Y-m-d'),
+                'image_order' => $slide['slide_order'],
+                'profile_pic' => ''
+            ];
+        }
+    } catch (Exception $e) {
+        // skip jika tabel tidak ada
+    }
 } catch (Exception $e) {
     // Jika tabel belum ada, set empty array
     $photos = [];

@@ -25,6 +25,13 @@ try {
     $site_tagline = 'Platform kolaborasi dan dokumentasi kelas Informatika terbaik';
 }
 
+// Ambil SEMUA settings dari database untuk footer
+$stmt = $pdo->query("SELECT setting_key, setting_value FROM site_settings");
+$settings = [];
+foreach ($stmt->fetchAll() as $row) {
+    $settings[$row['setting_key']] = $row['setting_value'];
+}
+
 // Ambil logo navbar (navbar_icon) dari database
 $footer_logo = 'public/images/logo.png';
 try {
@@ -58,6 +65,36 @@ $contact_address = $settings['contact_address'] ?? 'Jl. Pendidikan No. 123, Jaka
 $show_facebook_icon = $settings['show_facebook_icon'] ?? 1;
 $show_twitter_icon = $settings['show_twitter_icon'] ?? 1;
 $show_github_icon = $settings['show_github_icon'] ?? 1;
+
+// Load footer menu links from database
+$footer_menu_links = [];
+try {
+    $stmt = $pdo->query("SELECT label, url, icon_class FROM footer_links WHERE is_active = 1 ORDER BY sort_order ASC");
+    $footer_menu_links = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    // Table may not exist yet, use defaults
+    $footer_menu_links = [];
+}
+
+// Default menu links if database empty
+if (empty($footer_menu_links)) {
+    $footer_menu_links = [
+        ['label' => 'Home', 'url' => url('home'), 'icon_class' => ''],
+        ['label' => 'Galeri', 'url' => url('gallery'), 'icon_class' => ''],
+        ['label' => 'Pengumuman', 'url' => url('announcement'), 'icon_class' => ''],
+        ['label' => 'Kontak', 'url' => url('contact'), 'icon_class' => ''],
+    ];
+}
+
+// Default menu links if database empty
+if (empty($footer_menu_links)) {
+    $footer_menu_links = [
+        ['label' => 'Home', 'url' => url('home'), 'icon_class' => ''],
+        ['label' => 'Galeri', 'url' => url('gallery'), 'icon_class' => ''],
+        ['label' => 'Pengumuman', 'url' => url('announcement'), 'icon_class' => ''],
+        ['label' => 'Kontak', 'url' => url('contact'), 'icon_class' => ''],
+    ];
+}
 ?>
 
 <footer class="text-white py-12 mt-16" style="background: linear-gradient(135deg, <?= $primary_color ?> 0%, <?= $secondary_color ?> 100%);">
@@ -76,10 +113,18 @@ $show_github_icon = $settings['show_github_icon'] ?? 1;
             <div>
                 <h4 class="font-bold mb-4 text-lg">Menu</h4>
                 <ul class="space-y-2 text-blue-200 text-sm">
-                    <li><a href="<?= url('home') ?>" class="hover:text-white transition">Home</a></li>
-                    <li><a href="<?= url('gallery') ?>" class="hover:text-white transition">Galeri</a></li>
-                    <li><a href="<?= url('announcement') ?>" class="hover:text-white transition">Pengumuman</a></li>
-                    <li><a href="<?= url('contact') ?>" class="hover:text-white transition">Kontak</a></li>
+                    <?php foreach ($footer_menu_links as $link): ?>
+                        <li>
+                            <a href="<?= htmlspecialchars($link['url']) ?>" class="hover:text-white transition flex items-center gap-2">
+                                <?php if (!empty($link['icon_class'])): ?>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?= htmlspecialchars($link['icon_class']) ?>"/>
+                                    </svg>
+                                <?php endif; ?>
+                                <?= htmlspecialchars($link['label']) ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
 

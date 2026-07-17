@@ -102,7 +102,7 @@ try {
         // Query untuk mengambil 4 foto terbaru berdasarkan tanggal post
         $stmt = $pdo->query(
             "SELECT pi.image_path, p.id, p.title as caption, p.content as description, p.date as uploaded_at, 
-                    users.username, users.id as user_id
+                    users.username, users.id as user_id, users.profile_pic
              FROM post_images pi 
              JOIN posts p ON pi.post_id = p.id 
              JOIN users ON p.user_id = users.id 
@@ -554,16 +554,17 @@ $recent_photos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <!-- Grid untuk 4 foto terbaru -->
                 <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
                     <?php foreach ($recent_photos as $photo): ?>
-                        <div class="relative aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer transform hover:-translate-y-2"
-                             onclick='openPhotoModal(<?= json_encode([
-                                 "id" => $photo["id"],
-                                 "image" => $photo["image_path"],
-                                 "title" => $photo["caption"],
-                                 "description" => $photo["description"],
-                                 "username" => $photo["username"],
-                                 "user_id" => $photo["user_id"],
-                                 "date" => $photo["uploaded_at"],
-                             ]) ?>)'>
+<div class="relative aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer transform hover:-translate-y-2"
+                              onclick='openPhotoModal(<?= json_encode([
+                                  "id" => $photo["id"],
+                                  "image" => $photo["image_path"],
+                                  "title" => $photo["caption"],
+                                  "description" => $photo["description"],
+                                  "username" => $photo["username"],
+                                  "user_id" => $photo["user_id"],
+                                  "date" => $photo["uploaded_at"],
+                                  "profile_pic" => $photo["profile_pic"]
+                              ]) ?>)'>
                             <img src=" <?= BASE_URL ?>/public/uploads/<?= htmlspecialchars(
     $photo["image_path"],
 ) ?>"

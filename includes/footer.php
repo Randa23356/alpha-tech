@@ -132,14 +132,27 @@ if (empty($footer_menu_links)) {
             <div>
                 <h4 class="font-bold mb-4 text-lg">Akun</h4>
                 <ul class="space-y-2 text-blue-200 text-sm">
-                    <?php if (isset($_SESSION['user'])): ?>
-                        <li><a href="<?= url('dashboard') ?>" class="hover:text-white transition">Dashboard</a></li>
-                        <li><a href="<?= url('profile') ?>" class="hover:text-white transition">Profil</a></li>
-                        <li><a href="<?= url('post') ?>" class="hover:text-white transition">Posting Kegiatan</a></li>
-                        <li><a href="<?= url('logout') ?>" class="hover:text-white transition">Logout</a></li>
+                    <?php if (isset($_SESSION['user'])): 
+                        $role = $_SESSION['user']['role'] ?? 'user';
+                        $userId = $_SESSION['user']['id'] ?? 0;
+                        if ($role === 'admin'): ?>
+                            <li><a href="<?= url('admin/dashboard.php') ?>" class="hover:text-white transition">Dashboard</a></li>
+                            <li><a href="<?= url('admin/manage_posts.php') ?>" class="hover:text-white transition">Kelola Postingan</a></li>
+                            <li><a href="<?= url('admin/site_settings.php') ?>" class="hover:text-white transition">Pengaturan</a></li>
+                            <li><a href="<?= url('logout.php') ?>" class="hover:text-white transition">Logout</a></li>
+                        <?php elseif ($role === 'korti'): ?>
+                            <li><a href="<?= url('korti/dashboard.php') ?>" class="hover:text-white transition">Dashboard</a></li>
+                            <li><a href="<?= url('korti/create_post.php') ?>" class="hover:text-white transition">Posting Kegiatan</a></li>
+                            <li><a href="<?= url('logout.php') ?>" class="hover:text-white transition">Logout</a></li>
+                        <?php else: ?>
+                            <li><a href="<?= url('dashboard') ?>" class="hover:text-white transition">Dashboard</a></li>
+                            <li><a href="<?= url('profile') ?>" class="hover:text-white transition">Profil</a></li>
+                            <li><a href="<?= url('post') ?>" class="hover:text-white transition">Posting Kegiatan</a></li>
+                            <li><a href="<?= url('logout.php') ?>" class="hover:text-white transition">Logout</a></li>
+                        <?php endif; ?>
                     <?php else: ?>
-                        <li><a href="<?= url('login') ?>" class="hover:text-white transition">Login</a></li>
-                        <li><a href="<?= url('register') ?>" class="hover:text-white transition">Daftar</a></li>
+                        <li><a href="<?= url('login.php') ?>" class="hover:text-white transition">Login</a></li>
+                        <li><a href="<?= url('register.php') ?>" class="hover:text-white transition">Daftar</a></li>
                     <?php endif; ?>
                 </ul>
             </div>

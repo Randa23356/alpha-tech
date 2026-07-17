@@ -44,6 +44,12 @@ if (!$userId) {
     exit();
 }
 
+// If viewing own profile, redirect to profile page
+if ($userId === intval($currentUser['id'] ?? 0)) {
+    header("Location: " . url('profile'));
+    exit();
+}
+
 // Get user profile data
 try {
     $stmt = $pdo->prepare("

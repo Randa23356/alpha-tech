@@ -10,7 +10,7 @@ $accent_color = "#ec4899"; // default
 
 try {
     $stmt = $pdo->query(
-        "SELECT setting_key, setting_value FROM site_settings WHERE setting_key IN ('primary_color', 'secondary_color', 'accent_color')",
+        "SELECT setting_key, setting_value FROM site_settings WHERE setting_key IN ('primary_color', 'secondary_color', 'accent_color', 'site_tagline')",
     );
     $theme_settings = [];
     foreach ($stmt->fetchAll() as $row) {
@@ -19,16 +19,33 @@ try {
     $primary_color = $theme_settings["primary_color"] ?? $primary_color;
     $secondary_color = $theme_settings["secondary_color"] ?? $secondary_color;
     $accent_color = $theme_settings["accent_color"] ?? $accent_color;
+    $site_tagline = $theme_settings["site_tagline"] ?? 'Platform kolaborasi dan dokumentasi kelas Informatika terbaik';
 } catch (Exception $e) {
     // Use default colors if database fails
+    $site_tagline = 'Platform kolaborasi dan dokumentasi kelas Informatika terbaik';
 }
 
-// Ambil data pengaturan dari database
-$stmt = $pdo->query("SELECT setting_key, setting_value FROM site_settings");
-$settings = [];
-foreach ($stmt->fetchAll() as $row) {
-    $settings[$row['setting_key']] = $row['setting_value'];
+// Ambil logo navbar (navbar_icon) dari database
+$footer_logo = 'public/images/logo.png';
+try {
+    $stmt = $pdo->query("SELECT setting_key, setting_value FROM site_settings WHERE setting_key = 'navbar_icon_id'");
+    $settings_navbar = [];
+    foreach ($stmt->fetchAll() as $row) {
+        $settings_navbar[$row['setting_key']] = $row['setting_value'];
+    }
+    $navbar_icon_id = $settings_navbar['navbar_icon_id'] ?? null;
+    if ($navbar_icon_id && $navbar_icon_id !== '' && $navbar_icon_id !== '0') {
+        $icon_stmt = $pdo->prepare("SELECT file_path FROM navbar_icons WHERE id = ? AND is_active = 1");
+        $icon_stmt->execute([$navbar_icon_id]);
+        $icon_result = $icon_stmt->fetch(PDO::FETCH_ASSOC);
+        if ($icon_result) {
+            $footer_logo = $icon_result['file_path'];
+        }
+    }
+} catch (Exception $e) {
+    // fallback
 }
+$footer_logo_url = url(htmlspecialchars($footer_logo)) . '?v=' . time();
 
 // Default values jika tidak ada di database
 $site_name = $settings['site_name'] ?? 'Informatics A';
@@ -49,11 +66,7 @@ $show_github_icon = $settings['show_github_icon'] ?? 1;
             <!-- About -->
             <div>
                 <div class="flex items-center gap-2 mb-4">
-                    <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                        </svg>
-                    </div>
+                    <img src="<?= $footer_logo_url ?>" alt="<?= htmlspecialchars($site_name) ?>" class="w-10 h-10 rounded-lg object-cover">
                     <h3 class="text-xl font-bold"><?= htmlspecialchars($site_name) ?></h3>
                 </div>
                 <p class="text-blue-200 text-sm"><?= htmlspecialchars($site_tagline) ?></p>

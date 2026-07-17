@@ -2174,12 +2174,26 @@ $hero_show_arrows_desktop = $current_slider_settings['hero_show_arrows_desktop']
                         ];
 
                         $iconData = $iconMap[$feature['icon_name']] ?? $iconMap['document'];
+                        $gradientColors = [
+                            'from-blue-500 to-indigo-600' => 'linear-gradient(135deg, #3b82f6, #4f46e5)',
+                            'from-emerald-500 to-teal-600' => 'linear-gradient(135deg, #10b981, #0d9488)',
+                            'from-purple-500 to-pink-600' => 'linear-gradient(135deg, #a855f7, #db2777)',
+                            'from-orange-500 to-red-600' => 'linear-gradient(135deg, #f97316, #dc2626)',
+                        ];
+                        $bgColors = [
+                            'from-blue-500/10 to-indigo-500/10' => 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(79,70,229,0.1))',
+                            'from-emerald-500/10 to-teal-500/10' => 'linear-gradient(135deg, rgba(16,185,129,0.1), rgba(13,148,136,0.1))',
+                            'from-purple-500/10 to-pink-500/10' => 'linear-gradient(135deg, rgba(168,85,247,0.1), rgba(219,39,119,0.1))',
+                            'from-orange-500/10 to-red-500/10' => 'linear-gradient(135deg, rgba(249,115,22,0.1), rgba(220,38,38,0.1))',
+                        ];
+                        $iconGradient = $gradientColors[$iconData['gradient']] ?? 'linear-gradient(135deg, #3b82f6, #4f46e5)';
+                        $iconBg = $bgColors[$iconData['bg']] ?? 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(79,70,229,0.1))';
                         $animationClass = $index === 0 ? 'animate-slide-in-left' : ($index === 1 ? 'animate-fade-in-up' : 'animate-slide-in-right');
                         ?>
                         <div class="group bg-white p-4 sm:p-6 lg:p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 card-hover border border-gray-100 relative overflow-hidden <?= $animationClass ?>">
-                            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br <?= $iconData['bg'] ?> rounded-full -translate-y-8 translate-x-8"></div>
+                            <div class="absolute top-0 right-0 w-20 h-20 rounded-full -translate-y-8 translate-x-8" style="background: <?= $iconBg ?>"></div>
                             <div class="relative">
-                                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br <?= $iconData['gradient'] ?> rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300" style="background: <?= $iconGradient ?>">
                                     <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="<?= $iconData['path'] ?>"/>
                                     </svg>

@@ -76,7 +76,7 @@ try {
         foreach ($hero_slides as $slide) {
             $photos[] = [
                 'id' => 'slide_' . $slide['id'],
-                'image' => 'uploads/hero/' . $slide['background_image'],
+                'image' => 'hero/' . $slide['background_image'],
                 'title' => $slide['title'] ?: ($slide['subtitle'] ?: 'Slider'),
                 'description' => '',
                 'username' => 'Admin',

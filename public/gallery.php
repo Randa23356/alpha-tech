@@ -75,7 +75,7 @@ try {
         $hero_slides = $stmt->fetchAll();
         foreach ($hero_slides as $slide) {
             $all_photos[] = [
-                'image_path' => 'uploads/hero/' . $slide['background_image'],
+                'image_path' => 'hero/' . $slide['background_image'],
                 'image_order' => $slide['slide_order'],
                 'title' => $slide['title'] ?: ($slide['subtitle'] ?: 'Slider'),
                 'content' => '',
